@@ -3,6 +3,7 @@ import time
 from keys import *
 from random import randint
 
+intervalo = 3600
 música = ["É pau, é pedra, é o fim do caminho",
           "É um resto de toco, é um pouco sozinho",
           "É um caco de vidro, é a vida, é o Sol",
@@ -49,10 +50,8 @@ música = ["É pau, é pedra, é o fim do caminho",
           "São as águas de março fechando o verão",
           "É a promessa de vida no teu coração"
           ]
-versos = []
-for verso in música:
-    if verso not in versos:
-        versos.append(verso)
+
+versos = list(dict.fromkeys([verso for verso in música]))
 
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
@@ -70,7 +69,6 @@ def tuita():
     print(f"'{versos[n]}' tuitado")
 
 
-
 while True:
     tuita()
-    time.sleep(3600)
+    time.sleep(intervalo)
